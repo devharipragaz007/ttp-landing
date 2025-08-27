@@ -1,22 +1,21 @@
 'use client'
 
-import Link from 'next/link'
-import { useState } from 'react'
-import { ShoppingCart, Heart, Star, Users, Truck, Shield } from 'lucide-react'
+import React, { useState } from 'react'
+import { ShoppingCart, Heart, Star, Users, Shield } from 'lucide-react'
 
 // Product interface for type safety
 interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  description: string;
-  rating: number;
-  reviews: number;
-  category: string;
-  featured: boolean;
-  inStock: boolean;
+  id: string
+  name: string
+  price: number
+  originalPrice?: number
+  image: string
+  description: string
+  rating: number
+  reviews: number
+  category: string
+  featured: boolean
+  inStock: boolean
 }
 
 // Sample product data
@@ -82,7 +81,6 @@ function ProductCard({ product }: { product: Product }) {
     : 0
 
   const handleAddToCart = () => {
-    // Shopify Buy SDK integration point
     console.log('Add to cart:', product.id)
   }
 
@@ -97,14 +95,13 @@ function ProductCard({ product }: { product: Product }) {
             -{discountPercentage}%
           </div>
         )}
-        <button 
+        <button
           onClick={() => setIsLiked(!isLiked)}
           className="absolute top-3 right-3 p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-all"
         >
-          <Heart className={`h-4 w-4 ${isLiked ? 'fill-red-500 text-red-500' : 'text-gray-400'}`} />
+          <Heart className={`h-4 w-4 ${isLiked ? 'fill-current text-red-500' : 'text-gray-400'}`} />
         </button>
       </div>
-
       <div className="p-4">
         <div className="flex items-start justify-between mb-2">
           <h3 className="font-semibold text-gray-900 text-sm leading-tight">{product.name}</h3>
@@ -113,13 +110,10 @@ function ProductCard({ product }: { product: Product }) {
             <span className="text-xs text-gray-600 ml-1">{product.rating}</span>
           </div>
         </div>
-        
         <p className="text-xs text-gray-600 mb-3 line-clamp-2">{product.description}</p>
-        
         <div className="flex items-center text-xs text-gray-500 mb-3">
-          <span>{product.reviews} reviews</span>
+          {product.reviews} reviews
         </div>
-
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <span className="text-lg font-bold text-purple-600">${product.price}</span>
@@ -127,7 +121,7 @@ function ProductCard({ product }: { product: Product }) {
               <span className="text-sm text-gray-400 line-through">${product.originalPrice}</span>
             )}
           </div>
-          <button 
+          <button
             onClick={handleAddToCart}
             disabled={!product.inStock}
             className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center space-x-1"
@@ -152,46 +146,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
   )
 }
 
-// Testimonial Component
-function TestimonialCard({ quote, author, role, rating }: { quote: string; author: string; role: string; rating: number }) {
-  return (
-    <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-      <div className="flex items-center mb-4">
-        {[...Array(5)].map((_, i) => (
-          <Star key={i} className={`h-4 w-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-        ))}
-      </div>
-      <p className="text-gray-700 mb-4 italic text-sm leading-relaxed">"{quote}"</p>
-      <div>
-        <p className="font-semibold text-gray-900 text-sm">{author}</p>
-        <p className="text-xs text-gray-500">{role}</p>
-      </div>
-    </div>
-  )
-}
-
 export default function HomePage() {
-  const testimonials = [
-    {
-      quote: "Finally found a brand that truly represents me. The quality is amazing and knowing my purchase supports the community makes it even better.",
-      author: "Alex Rivera",
-      role: "Teacher & Activist",
-      rating: 5
-    },
-    {
-      quote: "I love wearing my Pride & Purpose hoodie to work. It's a conversation starter and helps create visibility in my corporate environment.",
-      author: "Jordan Chen",
-      role: "Software Engineer",
-      rating: 5
-    },
-    {
-      quote: "The pin collection is perfect! I gift them to allies and new community members. They spark important conversations.",
-      author: "Sam Taylor",
-      role: "Student Leader",
-      rating: 5
-    }
-  ]
-
   return (
     <>
       <section className="relative bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 overflow-hidden">
@@ -214,18 +169,18 @@ export default function HomePage() {
               by and for the LGBTQIA+ community. Every purchase supports equality and acceptance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link 
+              <a
                 href="#shop" 
                 className="bg-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
               >
                 Shop Collection
-              </Link>
-              <Link 
+              </a>
+              <a
                 href="#about" 
                 className="border border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               >
                 Our Story
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -271,20 +226,18 @@ export default function HomePage() {
               Handpicked favorites that celebrate identity, promote visibility, and spread love.
             </p>
           </div>
-          
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-          
           <div className="text-center mt-12">
-            <Link 
+            <a
               href="#contact" 
               className="inline-flex items-center px-6 py-3 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-600 hover:text-white transition-colors"
             >
               View Full Collection
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -298,4 +251,32 @@ export default function HomePage() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Founded in 2023 by a group of LGBT
+                  Founded in 2023 by a group of LGBTQIA+ entrepreneurs, Pride & Purpose was born from a simple 
+                  belief: everyone deserves to express their authentic self with pride and confidence.
+                </p>
+                <p>
+                  We partner exclusively with LGBTQIA+ artists, designers, and suppliers to create merchandise 
+                  that truly represents our community. From concept to creation, every product tells a story 
+                  of resilience, love, and acceptance.
+                </p>
+                <p>
+                  Our commitment extends beyond commerce. We actively support LGBTQIA+ advocacy groups, 
+                  fund scholarships for queer students, and create safe spaces for community gathering and celebration.
+                </p>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 rounded-2xl p-8 text-center">
+                <div className="text-6xl mb-4">🏳️‍⚧️</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Inclusive & Authentic</h3>
+                <p className="text-gray-600">
+                  Representing all identities within our beautiful, diverse community with respect and authenticity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
