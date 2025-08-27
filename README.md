@@ -14,10 +14,10 @@ This document outlines all the steps taken to provision the Next.js dependencies
 - Added all required dependencies:
   - **Core**: `next@14.2.5`, `react@^18`, `react-dom@^18`
   - **Netlify**: `@netlify/plugin-nextjs@^5.6.0` for optimized deployment
-  - **OG Images**: `@vercel/og@^0.6.2` for dynamic social media images
   - **Styling**: `tailwindcss@^3.4.4`, `autoprefixer@^10.4.19`, `postcss@^8.4.39`
   - **TypeScript**: Full TypeScript setup with type definitions
   - **Linting**: ESLint with Next.js configuration
+  - **Utilities**: `clsx@^2.0.0` for conditional class names
 
 #### 2. TypeScript Configuration
 - Created `tsconfig.json` with Next.js 14 App Router support
@@ -50,10 +50,10 @@ This document outlines all the steps taken to provision the Next.js dependencies
 ### 🛠️ Next Steps (To Be Completed)
 
 #### 6. Project Structure Creation
-- [ ] Create `src/` directory structure
-- [ ] Set up App Router with `src/app/` directory
-- [ ] Create main layout file (`src/app/layout.tsx`)
-- [ ] Create home page (`src/app/page.tsx`)
+- [ ] Create src/ directory structure
+- [ ] Set up App Router with src/app/ directory
+- [ ] Create main layout file (src/app/layout.tsx)
+- [ ] Create home page (src/app/page.tsx)
 - [ ] Add global styles with Tailwind directives
 - [ ] Set up components directory structure
 
@@ -92,7 +92,7 @@ npm run lint     # Run ESLint
 ## 🚀 Deployment
 
 This project is configured for automatic deployment on Netlify with:
-- Next.js optimization via `@netlify/plugin-nextjs`
+- Next.js optimization via @netlify/plugin-nextjs
 - Comprehensive security headers
 - Proper routing for API endpoints
 - Optimized build settings
@@ -125,8 +125,7 @@ The application will be available at `http://localhost:3000`.
 - **Styling**: Tailwind CSS
 - **UI Components**: Shadcn/ui (to be configured)
 - **Deployment**: Netlify
-- **OG Images**: @vercel/og for dynamic social sharing
 
 ---
-
 *Documentation updated: August 27, 2025*
+*Repository prepared for Netlify deployment - Vercel artifacts removed*
